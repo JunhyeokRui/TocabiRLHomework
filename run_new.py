@@ -9,7 +9,7 @@ from stable_baselines3.common.utils import set_random_seed
 from tocabirl.vec_normalize_clipped_var import VecNormalizeClippedVar
 
 # Import our custom gym environment, which in the init will generate the gym environment
-from tocabirl.cust_gym import tocabi_squat, terrain_generator
+from tocabirl.cust_gym import terrain_generator
 
 import numpy as np
 import datetime
@@ -22,7 +22,7 @@ from dataclasses import dataclass
 class args:
    run_type = "train" # "train", "fine_tune", "enjoy",
    n_cpu = 1 if run_type == "enjoy" else 8
-   task = 'Walk' # "Stand Still", "Squat", "Walk", "AtlasWalk" 
+   task = 'Walk'
    render = False # Available when n_cpu = 1 or run_type = "enjoy"
    n_steps = int(2*8192/n_cpu)
    batch_size = 128 
@@ -62,12 +62,7 @@ def setup_env():
       set_random_seed(seed)
       return _init
 
-   if args.task == "Stand Still": env_id = "tocabi-stand-still-v0"
-   elif args.task=="Squat":       env_id = "tocabi-squat-v0"
-   elif args.task=="Walk":       env_id = "tocabi-walk-v0"
-   elif args.task=="Run":       env_id = "tocabi-run-v0"
-   elif args.task=="AtlasWalk":       env_id = "atlas-walk-v0"
-   elif args.task=="AtlasRun":       env_id = "atlas-run-v0"
+   if args.task=="Walk":       env_id = "tocabi-walk-v0"
    else:                          env_id = "tocabi-walk-v0"
 
    # Use single environment if only using 1 core

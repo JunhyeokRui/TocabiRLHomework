@@ -47,6 +47,23 @@ When the training is finished, you can visualize the trained policy by setting `
 
 2) <span style="color:red">/mujoco-py/mujoco_py/cymj.pyx:127:21: Cannot assign type 'void (const char *) except * nogil' to 'void (*)(const char *) noexcept nogil'</span> &rarr; pip install "cython<3"
 
+3) <span style="color:red"> for ubuntu 24.04
+
+    **Package Install**
+    
+    `sudo apt install libosmesa6-dev libgl1-mesa-glx libglfw3`
+
+    may cause problem. Do
+
+    `sudo apt install libosmesa6-dev libglfw3 libegl1-mesa-dev libgl1 libglx-mesa0 libglew-dev`
+    
+    **error with GLEW**
+
+    `export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libGLEW.so:/usr/lib/x86_64-linux-gnu/libGL.so` 
+    
+    may cause problem. Do
+
+    `export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libGLEW.so.2.2:/usr/lib/x86_64-linux-gnu/libGL.so`
 
 ## Brief Directory Description
 `data`: Mean and variance of states
